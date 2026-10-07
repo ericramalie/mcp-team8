@@ -42,10 +42,10 @@ async function pingService(name, url, options = {}) {
 }
 
 /**
- * GET /api/health
- * Comprehensive monitoring endpoint for all integrated Singapore Government APIs
+ * Health check handler function
+ * Handles both Express and Vercel serverless function environments
  */
-router.get('/', async (req, res) => {
+async function handleHealth(req, res) {
   const timestamp = new Date().toISOString();
 
   // Run live probes concurrently
@@ -101,7 +101,8 @@ router.get('/', async (req, res) => {
 
   const overallStatus = allLiveOk ? 'healthy' : 'degraded';
 
-  res.status(allLiveOk ? 200 : 200).json({
+  res.setHeader?.('Content-Type', 'application/json');
+  return res.status(200).json({
     status: overallStatus,
     timestamp,
     system: 'EstatePulse SG API Gateway',
@@ -121,6 +122,16 @@ router.get('/', async (req, res) => {
       masGateway: masStatus,
     },
   });
-});
+}
 
-export default router;
+// Support Express Router mounting
+router.all('*', handleHealth);
+
+// Universal export that works seamlessly in Express (`app.use('/health', healthRouter)`)
+// AND as a direct Vercel Serverless Function (`export default handler(req, res)`)
+export default function handler(req, res, next) {
+  if (typeof next === 'function') {
+    return router(req, res, next);
+  }
+  return handleHealth(req, res);
+}
