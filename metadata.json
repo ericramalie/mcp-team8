@@ -1,0 +1,6 @@
+{
+  "name": "EstatePulse SG",
+  "description": "Singapore's data-driven property portal with URA Space & HDB resale analytics, live carpark availability, BTO updates, and MAS true affordability calculator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
