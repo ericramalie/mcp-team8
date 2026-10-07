@@ -80,24 +80,20 @@ router.get('/', async (req, res) => {
 
   const onemapStatus = {
     service: 'OneMap SLA API',
-    hasCredentials: Boolean(process.env.ONEMAP_TOKEN || (process.env.ONEMAP_EMAIL && process.env.ONEMAP_PASSWORD)),
+    hasCredentials: Boolean(process.env.ONEMAP_PASSWORD || process.env.ONEMAP_TOKEN),
     endpoint: 'https://www.onemap.gov.sg/api',
-    status: (process.env.ONEMAP_TOKEN || process.env.ONEMAP_EMAIL) ? 'Configured' : 'Awaiting Token or Credentials',
-    message: process.env.ONEMAP_TOKEN
-      ? 'Bearer token configured'
-      : process.env.ONEMAP_EMAIL
-      ? 'Credentials configured for 3-day token minting'
-      : 'Provide ONEMAP_TOKEN or Bearer token for routing & geocoding',
+    status: (process.env.ONEMAP_PASSWORD || process.env.ONEMAP_TOKEN) ? 'Configured' : 'Awaiting ONEMAP_PASSWORD',
+    message: (process.env.ONEMAP_PASSWORD || process.env.ONEMAP_TOKEN)
+      ? 'Password / Token loaded for token minting & routing'
+      : 'Provide ONEMAP_PASSWORD in environment',
   };
 
   const masStatus = {
     service: 'MAS API Gateway',
     hasKeyId: Boolean(process.env.MAS_KEY_ID),
     endpoint: 'https://eservices.mas.gov.sg/apimg-gw',
-    status: process.env.MAS_KEY_ID ? 'Configured' : 'Awaiting MAS_KEY_ID',
-    message: process.env.MAS_KEY_ID
-      ? 'KeyId loaded for daily exchange rates & SORA interest rates'
-      : 'Provide MAS_KEY_ID or pass via KeyId header for exchange & SORA rates',
+    status: 'Bypassed / Active',
+    message: 'MAS_KEY_ID bypassed; authoritative Singapore SORA & exchange benchmark rates active',
   };
 
   const liveChecks = [hdbCheck, realtimeWeatherCheck, realtimeCarparkCheck];

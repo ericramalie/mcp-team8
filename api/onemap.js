@@ -17,13 +17,23 @@ async function getOneMapToken(email, password) {
     return cachedOneMapToken.token;
   }
 
+  // If the provided password is already an access token (JWT begins with ey...)
+  if (password && password.startsWith('ey')) {
+    cachedOneMapToken = {
+      token: password,
+      expiry: now + 3 * 86400 * 1000,
+    };
+    return password;
+  }
+
+  const effectiveEmail = email || process.env.ONEMAP_EMAIL || 'ericramalie@gmail.com';
   const tokenUrl = 'https://www.onemap.gov.sg/api/auth/post/getToken';
   const response = await fetch(tokenUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ email: effectiveEmail, password }),
   });
 
   if (!response.ok) {
@@ -33,7 +43,6 @@ async function getOneMapToken(email, password) {
 
   const data = await response.json();
   if (data.access_token) {
-    // Expires in approx 3 days (or default to 72 hours)
     const ttlSeconds = data.expiry_timestamp ? (new Date(data.expiry_timestamp).getTime() - now) / 1000 : 3 * 24 * 3600;
     cachedOneMapToken = {
       token: data.access_token,
@@ -46,16 +55,37 @@ async function getOneMapToken(email, password) {
 }
 
 /**
+ * Helper to resolve active token from headers, env, or cache
+ */
+async function resolveActiveToken(req) {
+  let token =
+    req.headers['authorization']?.replace(/^Bearer\s+/i, '') ||
+    process.env.ONEMAP_TOKEN ||
+    (process.env.ONEMAP_PASSWORD?.startsWith('ey') ? process.env.ONEMAP_PASSWORD : null) ||
+    cachedOneMapToken.token;
+
+  if (!token && process.env.ONEMAP_PASSWORD) {
+    try {
+      token = await getOneMapToken(process.env.ONEMAP_EMAIL, process.env.ONEMAP_PASSWORD);
+    } catch (err) {
+      // ignore
+    }
+  }
+
+  return token;
+}
+
+/**
  * POST /api/onemap/token
  * Manually mints or refreshes a token with credentials
  */
 router.post('/token', async (req, res) => {
-  const email = req.body?.email || process.env.ONEMAP_EMAIL;
+  const email = req.body?.email || process.env.ONEMAP_EMAIL || 'ericramalie@gmail.com';
   const password = req.body?.password || process.env.ONEMAP_PASSWORD;
 
-  if (!email || !password) {
+  if (!password) {
     return res.status(400).json({
-      error: 'Missing credentials. Provide email & password in request body or ONEMAP_EMAIL / ONEMAP_PASSWORD env variables.',
+      error: 'Missing password. Provide password in request body or set ONEMAP_PASSWORD in environment.',
     });
   }
 
@@ -82,18 +112,7 @@ router.get('/search', async (req, res) => {
   const getAddrDetails = req.query.getAddrDetails || 'Y';
   const pageNum = req.query.pageNum || '1';
 
-  let token =
-    req.headers['authorization']?.replace(/^Bearer\s+/i, '') ||
-    process.env.ONEMAP_TOKEN ||
-    cachedOneMapToken.token;
-
-  if (!token && req.body?.email && req.body?.password) {
-    try {
-      token = await getOneMapToken(req.body.email, req.body.password);
-    } catch {
-      // Continue to try if unauthenticated or return clear guidance
-    }
-  }
+  const token = await resolveActiveToken(req);
 
   const queryUrl = new URL('https://www.onemap.gov.sg/api/common/elastic/search');
   queryUrl.searchParams.set('searchVal', searchVal);
@@ -118,21 +137,17 @@ router.get('/search', async (req, res) => {
 /**
  * GET /api/onemap/revgeocode
  * Reverse geocoding (coordinates to address)
- * URL: https://www.onemap.gov.sg/api/public/revgeocode?location=1.3,103.8&buffer=40&addressType=All
  */
 router.get('/revgeocode', async (req, res) => {
   const location = req.query.location || '1.3,103.8';
   const buffer = req.query.buffer || '40';
   const addressType = req.query.addressType || 'All';
 
-  let token =
-    req.headers['authorization']?.replace(/^Bearer\s+/i, '') ||
-    process.env.ONEMAP_TOKEN ||
-    cachedOneMapToken.token;
+  const token = await resolveActiveToken(req);
 
   if (!token) {
     return res.status(401).json({
-      error: 'Token required for reverse geocoding. Provide Authorization header or set ONEMAP_TOKEN.',
+      error: 'Token required for reverse geocoding. Provide Authorization header or set ONEMAP_PASSWORD/ONEMAP_TOKEN in environment.',
     });
   }
 
@@ -153,21 +168,17 @@ router.get('/revgeocode', async (req, res) => {
 /**
  * GET /api/onemap/route
  * Routing: walk | drive | cycle | pt
- * URL: https://www.onemap.gov.sg/api/public/routingsvc/route?start=...&end=...&routeType=walk
  */
 router.get('/route', async (req, res) => {
   const start = req.query.start || '1.320981,103.844150';
   const end = req.query.end || '1.326762,103.8559';
-  const routeType = req.query.routeType || 'walk'; // walk, drive, cycle, pt
+  const routeType = req.query.routeType || 'walk';
 
-  let token =
-    req.headers['authorization']?.replace(/^Bearer\s+/i, '') ||
-    process.env.ONEMAP_TOKEN ||
-    cachedOneMapToken.token;
+  const token = await resolveActiveToken(req);
 
   if (!token) {
     return res.status(401).json({
-      error: 'Token required for OneMap routing service. Provide Authorization header or set ONEMAP_TOKEN.',
+      error: 'Token required for OneMap routing service. Provide Authorization header or set ONEMAP_PASSWORD/ONEMAP_TOKEN in environment.',
     });
   }
 
