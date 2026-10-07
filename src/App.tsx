@@ -15,6 +15,7 @@ import { MembershipModal } from './components/MembershipModal';
 import { AlertsSubscriptionModal } from './components/AlertsSubscriptionModal';
 import { SavedPropertiesDrawer } from './components/SavedPropertiesDrawer';
 import { BtoTrackerSection } from './components/BtoTrackerSection';
+import { ApiMonitorModal } from './components/ApiMonitorModal';
 import { Footer } from './components/Footer';
 import { MOCK_PROPERTIES } from './data/mockProperties';
 import { FilterState, PropertyCategory, PropertyListing } from './types/property';
@@ -61,6 +62,7 @@ export default function App() {
   const [membershipOpen, setMembershipOpen] = useState(false);
   const [alertsOpen, setAlertsOpen] = useState(false);
   const [savedDrawerOpen, setSavedDrawerOpen] = useState(false);
+  const [apiMonitorOpen, setApiMonitorOpen] = useState(false);
 
   // Sync saved list to localStorage
   useEffect(() => {
@@ -209,6 +211,7 @@ export default function App() {
         onOpenMarketTrends={() => setMarketTrendsOpen(true)}
         onOpenMembership={() => setMembershipOpen(true)}
         onOpenSavedDrawer={() => setSavedDrawerOpen(true)}
+        onOpenApiMonitor={() => setApiMonitorOpen(true)}
         onSelectCategory={(cat) => setFilters({ ...filters, category: cat })}
       />
 
@@ -318,9 +321,14 @@ export default function App() {
           setCalculatorOpen(true);
         }}
         onOpenMarketTrends={() => setMarketTrendsOpen(true)}
+        onOpenApiMonitor={() => setApiMonitorOpen(true)}
       />
 
       {/* Interactive Modals */}
+      <ApiMonitorModal
+        isOpen={apiMonitorOpen}
+        onClose={() => setApiMonitorOpen(false)}
+      />
       <PropertyDetailModal
         property={selectedProperty}
         isOpen={detailModalOpen}

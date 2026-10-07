@@ -5,12 +5,14 @@ interface FooterProps {
   onOpenNewsletter: () => void;
   onOpenCalculator: () => void;
   onOpenMarketTrends: () => void;
+  onOpenApiMonitor: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   onOpenNewsletter,
   onOpenCalculator,
   onOpenMarketTrends,
+  onOpenApiMonitor,
 }) => {
   return (
     <footer className="bg-white border-t border-neutral-200 mt-20 text-neutral-600 text-xs">
@@ -31,6 +33,14 @@ export const Footer: React.FC<FooterProps> = ({
               Calculators & Datasets
             </h4>
             <ul className="space-y-2">
+              <li>
+                <button
+                  onClick={onOpenApiMonitor}
+                  className="hover:text-neutral-900 transition-colors text-left cursor-pointer font-semibold text-emerald-800 flex items-center gap-1.5"
+                >
+                  <span>Official Government APIs Gateway (/api/health)</span>
+                </button>
+              </li>
               <li>
                 <button
                   onClick={onOpenCalculator}

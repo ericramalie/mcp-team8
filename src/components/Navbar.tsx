@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bookmark, Calculator, Sparkles, TrendingUp } from 'lucide-react';
+import { Bookmark, Calculator, Sparkles, TrendingUp, Activity } from 'lucide-react';
 
 interface NavbarProps {
   savedCount: number;
@@ -7,6 +7,7 @@ interface NavbarProps {
   onOpenMarketTrends: () => void;
   onOpenMembership: () => void;
   onOpenSavedDrawer: () => void;
+  onOpenApiMonitor: () => void;
   onSelectCategory: (category: 'all' | 'new_launch' | 'bto' | 'condo_resale' | 'hdb_resale' | 'landed') => void;
 }
 
@@ -16,6 +17,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenMarketTrends,
   onOpenMembership,
   onOpenSavedDrawer,
+  onOpenApiMonitor,
   onSelectCategory,
 }) => {
   return (
@@ -37,7 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {/* Zone 2: 4-6 clean text navigation links */}
-        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-neutral-600">
+        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-neutral-600">
           <button
             onClick={() => {
               onSelectCategory('all');
@@ -81,6 +83,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <TrendingUp className="w-3.5 h-3.5 text-blue-700" />
             URA Market Data
+          </button>
+          <button
+            onClick={onOpenApiMonitor}
+            className="hover:text-neutral-900 transition-colors cursor-pointer flex items-center gap-1.5 text-emerald-800 font-semibold"
+          >
+            <Activity className="w-3.5 h-3.5 text-emerald-600" />
+            API Health
           </button>
         </nav>
 
