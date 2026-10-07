@@ -82,11 +82,14 @@ router.get('/search', async (req, res) => {
   const getAddrDetails = req.query.getAddrDetails || 'Y';
   const pageNum = req.query.pageNum || '1';
 
-  let token = req.headers['authorization']?.replace(/^Bearer\s+/i, '') || cachedOneMapToken.token;
+  let token =
+    req.headers['authorization']?.replace(/^Bearer\s+/i, '') ||
+    process.env.ONEMAP_TOKEN ||
+    cachedOneMapToken.token;
 
-  if (!token && process.env.ONEMAP_EMAIL && process.env.ONEMAP_PASSWORD) {
+  if (!token && req.body?.email && req.body?.password) {
     try {
-      token = await getOneMapToken(process.env.ONEMAP_EMAIL, process.env.ONEMAP_PASSWORD);
+      token = await getOneMapToken(req.body.email, req.body.password);
     } catch {
       // Continue to try if unauthenticated or return clear guidance
     }
@@ -122,18 +125,14 @@ router.get('/revgeocode', async (req, res) => {
   const buffer = req.query.buffer || '40';
   const addressType = req.query.addressType || 'All';
 
-  let token = req.headers['authorization']?.replace(/^Bearer\s+/i, '') || cachedOneMapToken.token;
-  if (!token && process.env.ONEMAP_EMAIL && process.env.ONEMAP_PASSWORD) {
-    try {
-      token = await getOneMapToken(process.env.ONEMAP_EMAIL, process.env.ONEMAP_PASSWORD);
-    } catch (err) {
-      return res.status(401).json({ error: `Could not obtain OneMap token: ${err.message}` });
-    }
-  }
+  let token =
+    req.headers['authorization']?.replace(/^Bearer\s+/i, '') ||
+    process.env.ONEMAP_TOKEN ||
+    cachedOneMapToken.token;
 
   if (!token) {
     return res.status(401).json({
-      error: 'Token required for reverse geocoding. Provide Authorization header or set ONEMAP_EMAIL/ONEMAP_PASSWORD.',
+      error: 'Token required for reverse geocoding. Provide Authorization header or set ONEMAP_TOKEN.',
     });
   }
 
@@ -161,18 +160,14 @@ router.get('/route', async (req, res) => {
   const end = req.query.end || '1.326762,103.8559';
   const routeType = req.query.routeType || 'walk'; // walk, drive, cycle, pt
 
-  let token = req.headers['authorization']?.replace(/^Bearer\s+/i, '') || cachedOneMapToken.token;
-  if (!token && process.env.ONEMAP_EMAIL && process.env.ONEMAP_PASSWORD) {
-    try {
-      token = await getOneMapToken(process.env.ONEMAP_EMAIL, process.env.ONEMAP_PASSWORD);
-    } catch (err) {
-      return res.status(401).json({ error: `Could not obtain OneMap token: ${err.message}` });
-    }
-  }
+  let token =
+    req.headers['authorization']?.replace(/^Bearer\s+/i, '') ||
+    process.env.ONEMAP_TOKEN ||
+    cachedOneMapToken.token;
 
   if (!token) {
     return res.status(401).json({
-      error: 'Token required for OneMap routing service. Provide Authorization header or set ONEMAP_EMAIL/ONEMAP_PASSWORD.',
+      error: 'Token required for OneMap routing service. Provide Authorization header or set ONEMAP_TOKEN.',
     });
   }
 

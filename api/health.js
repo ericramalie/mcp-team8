@@ -80,12 +80,14 @@ router.get('/', async (req, res) => {
 
   const onemapStatus = {
     service: 'OneMap SLA API',
-    hasCredentials: Boolean(process.env.ONEMAP_EMAIL && process.env.ONEMAP_PASSWORD),
+    hasCredentials: Boolean(process.env.ONEMAP_TOKEN || (process.env.ONEMAP_EMAIL && process.env.ONEMAP_PASSWORD)),
     endpoint: 'https://www.onemap.gov.sg/api',
-    status: process.env.ONEMAP_EMAIL ? 'Configured' : 'Awaiting Credentials',
-    message: process.env.ONEMAP_EMAIL
+    status: (process.env.ONEMAP_TOKEN || process.env.ONEMAP_EMAIL) ? 'Configured' : 'Awaiting Token or Credentials',
+    message: process.env.ONEMAP_TOKEN
+      ? 'Bearer token configured'
+      : process.env.ONEMAP_EMAIL
       ? 'Credentials configured for 3-day token minting'
-      : 'Provide ONEMAP_EMAIL/ONEMAP_PASSWORD or Bearer token for routing & geocoding',
+      : 'Provide ONEMAP_TOKEN or Bearer token for routing & geocoding',
   };
 
   const masStatus = {
