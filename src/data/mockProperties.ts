@@ -27,8 +27,8 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     imageUrl: '/src/assets/images/hero_singapore_condo_1791357754159.jpg',
     galleryUrls: [
       '/src/assets/images/hero_singapore_condo_1791357754159.jpg',
-      '/src/assets/images/property_luxury_interior_1791357779406.jpg',
-      '/src/assets/images/property_bto_estate_1791357768080.jpg',
+      '/src/assets/images/property_residence_pool_terrace_1791361852594.jpg',
+      '/src/assets/images/property_open_living_dining_1791361806271.jpg',
     ],
     schoolsNearby: [
       { name: 'Kong Hwa School', distanceKm: 0.4, within1km: true },
@@ -77,7 +77,7 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     imageUrl: '/src/assets/images/property_bto_estate_1791357768080.jpg',
     galleryUrls: [
       '/src/assets/images/property_bto_estate_1791357768080.jpg',
-      '/src/assets/images/hero_singapore_condo_1791357754159.jpg',
+      '/src/assets/images/property_highrise_skyline_view_1791361836840.jpg',
     ],
     schoolsNearby: [
       { name: 'Geylang Methodist School (Primary)', distanceKm: 0.7, within1km: true },
@@ -123,10 +123,11 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     topDate: 'Q2 2027',
     developer: 'City Developments Limited (CDL)',
     description: 'Rare freehold iconic integrated skyscraper within the vibrant Tanjong Pagar Central Business District. Panoramic vistas towards Greater Southern Waterfront and Marina Bay.',
-    imageUrl: '/src/assets/images/property_luxury_interior_1791357779406.jpg',
+    imageUrl: '/src/assets/images/property_highrise_skyline_view_1791361836840.jpg',
     galleryUrls: [
+      '/src/assets/images/property_highrise_skyline_view_1791361836840.jpg',
       '/src/assets/images/property_luxury_interior_1791357779406.jpg',
-      '/src/assets/images/hero_singapore_condo_1791357754159.jpg',
+      '/src/assets/images/property_residence_pool_terrace_1791361852594.jpg',
     ],
     schoolsNearby: [
       { name: 'Cantonment Primary School', distanceKm: 0.6, within1km: true },
@@ -172,7 +173,7 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     imageUrl: '/src/assets/images/property_landed_tropical_1791357792317.jpg',
     galleryUrls: [
       '/src/assets/images/property_landed_tropical_1791357792317.jpg',
-      '/src/assets/images/property_luxury_interior_1791357779406.jpg',
+      '/src/assets/images/property_open_living_dining_1791361806271.jpg',
     ],
     schoolsNearby: [
       { name: 'Singapore Chinese Girls Primary School', distanceKm: 1.6, within1km: false },
@@ -217,7 +218,7 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     imageUrl: '/src/assets/images/property_luxury_interior_1791357779406.jpg',
     galleryUrls: [
       '/src/assets/images/property_luxury_interior_1791357779406.jpg',
-      '/src/assets/images/hero_singapore_condo_1791357754159.jpg',
+      '/src/assets/images/property_highrise_skyline_view_1791361836840.jpg',
     ],
     schoolsNearby: [
       { name: 'Cantonment Primary School', distanceKm: 0.15, within1km: true },
@@ -261,10 +262,10 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     builtYear: 2018,
     developer: 'UOL Group & Kheng Leong',
     description: 'Renowned 80-20 garden concept: 80% sprawling lush gardens and pools, 20% building footprint. Overlooks the prestigious Bishopgate Good Class Bungalow enclave.',
-    imageUrl: '/src/assets/images/hero_singapore_condo_1791357754159.jpg',
+    imageUrl: '/src/assets/images/property_residence_pool_terrace_1791361852594.jpg',
     galleryUrls: [
-      '/src/assets/images/hero_singapore_condo_1791357754159.jpg',
-      '/src/assets/images/property_luxury_interior_1791357779406.jpg',
+      '/src/assets/images/property_residence_pool_terrace_1791361852594.jpg',
+      '/src/assets/images/property_open_living_dining_1791361806271.jpg',
     ],
     schoolsNearby: [
       { name: 'Alexandra Primary School', distanceKm: 0.5, within1km: true },
@@ -312,6 +313,7 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     imageUrl: '/src/assets/images/property_bto_estate_1791357768080.jpg',
     galleryUrls: [
       '/src/assets/images/property_bto_estate_1791357768080.jpg',
+      '/src/assets/images/property_highrise_skyline_view_1791361836840.jpg',
     ],
     schoolsNearby: [
       { name: 'Peiying Primary School', distanceKm: 0.6, within1km: true },
@@ -356,9 +358,10 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     builtYear: 2023,
     developer: 'City Developments Limited (CDL)',
     description: 'Iconic freehold East Coast living with the spectacular Stratosphere rooftop deck 22 storeys above sea level, offering 600m jogging track and unobstructed sea panoramas.',
-    imageUrl: '/src/assets/images/hero_singapore_condo_1791357754159.jpg',
+    imageUrl: '/src/assets/images/property_eastcoast_balcony_1791361781222.jpg',
     galleryUrls: [
-      '/src/assets/images/hero_singapore_condo_1791357754159.jpg',
+      '/src/assets/images/property_eastcoast_balcony_1791361781222.jpg',
+      '/src/assets/images/property_residence_pool_terrace_1791361852594.jpg',
       '/src/assets/images/property_luxury_interior_1791357779406.jpg',
     ],
     schoolsNearby: [
@@ -402,10 +405,10 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     remainingLeaseYears: 72,
     builtYear: 1999,
     description: 'Generously proportioned 5-room corner flat within prestigious Bishan estate. Renowned school belt proximity including Catholic High School and Raffles Institution.',
-    imageUrl: '/src/assets/images/property_bto_estate_1791357768080.jpg',
+    imageUrl: '/src/assets/images/property_open_living_dining_1791361806271.jpg',
     galleryUrls: [
-      '/src/assets/images/property_bto_estate_1791357768080.jpg',
-      '/src/assets/images/hero_singapore_condo_1791357754159.jpg',
+      '/src/assets/images/property_open_living_dining_1791361806271.jpg',
+      '/src/assets/images/property_highrise_skyline_view_1791361836840.jpg',
     ],
     schoolsNearby: [
       { name: 'Catholic High School (Primary)', distanceKm: 0.35, within1km: true },
