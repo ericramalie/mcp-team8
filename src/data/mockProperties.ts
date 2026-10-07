@@ -24,11 +24,11 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     topDate: 'Q4 2027',
     developer: 'SingHaiyi Group & CSC Land',
     description: 'Mega luxury development located directly next to Dakota MRT and Geylang River park connector. Features bespoke sky terrace pools, panoramic city fringe views, and premier finishes.',
-    imageUrl: '/src/assets/images/hero_singapore_condo_1791357754159.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
     galleryUrls: [
-      '/src/assets/images/hero_singapore_condo_1791357754159.jpg',
-      '/src/assets/images/property_residence_pool_terrace_1791361852594.jpg',
-      '/src/assets/images/property_open_living_dining_1791361806271.jpg',
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
     ],
     schoolsNearby: [
       { name: 'Kong Hwa School', distanceKm: 0.4, within1km: true },
@@ -74,10 +74,10 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     topDate: 'Est. Completion 2029',
     developer: 'Housing & Development Board (HDB)',
     description: 'Prime Location Housing (PLH) exercise situated directly adjacent to Kallang MRT station along the Kallang River. Comprehensive green landscape, active aging amenities, and direct sheltered walkway.',
-    imageUrl: '/src/assets/images/property_bto_estate_1791357768080.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=1200&q=80',
     galleryUrls: [
-      '/src/assets/images/property_bto_estate_1791357768080.jpg',
-      '/src/assets/images/property_highrise_skyline_view_1791361836840.jpg',
+      'https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80',
     ],
     schoolsNearby: [
       { name: 'Geylang Methodist School (Primary)', distanceKm: 0.7, within1km: true },
@@ -123,11 +123,11 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     topDate: 'Q2 2027',
     developer: 'City Developments Limited (CDL)',
     description: 'Rare freehold iconic integrated skyscraper within the vibrant Tanjong Pagar Central Business District. Panoramic vistas towards Greater Southern Waterfront and Marina Bay.',
-    imageUrl: '/src/assets/images/property_highrise_skyline_view_1791361836840.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
     galleryUrls: [
-      '/src/assets/images/property_highrise_skyline_view_1791361836840.jpg',
-      '/src/assets/images/property_luxury_interior_1791357779406.jpg',
-      '/src/assets/images/property_residence_pool_terrace_1791361852594.jpg',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80',
     ],
     schoolsNearby: [
       { name: 'Cantonment Primary School', distanceKm: 0.6, within1km: true },
@@ -170,10 +170,10 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     builtYear: 2021,
     developer: 'Architects 61 & Private Owner',
     description: 'Ultra-prestigious modern tropical sanctuary nestled adjacent to the UNESCO Singapore Botanic Gardens. Private lap pool, elevator, subterranean 4-car garage, and lush greenery.',
-    imageUrl: '/src/assets/images/property_landed_tropical_1791357792317.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=80',
     galleryUrls: [
-      '/src/assets/images/property_landed_tropical_1791357792317.jpg',
-      '/src/assets/images/property_open_living_dining_1791361806271.jpg',
+      'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
     ],
     schoolsNearby: [
       { name: 'Singapore Chinese Girls Primary School', distanceKm: 1.6, within1km: false },
@@ -215,10 +215,10 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     remainingLeaseYears: 84,
     builtYear: 2011,
     description: 'World-renowned architectural icon. High-floor unit with direct skybridge access at 26th and 50th storeys. Impeccably renovated Scandinavian interior, unblocked city views.',
-    imageUrl: '/src/assets/images/property_luxury_interior_1791357779406.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80',
     galleryUrls: [
-      '/src/assets/images/property_luxury_interior_1791357779406.jpg',
-      '/src/assets/images/property_highrise_skyline_view_1791361836840.jpg',
+      'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
     ],
     schoolsNearby: [
       { name: 'Cantonment Primary School', distanceKm: 0.15, within1km: true },
@@ -262,10 +262,10 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     builtYear: 2018,
     developer: 'UOL Group & Kheng Leong',
     description: 'Renowned 80-20 garden concept: 80% sprawling lush gardens and pools, 20% building footprint. Overlooks the prestigious Bishopgate Good Class Bungalow enclave.',
-    imageUrl: '/src/assets/images/property_residence_pool_terrace_1791361852594.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80',
     galleryUrls: [
-      '/src/assets/images/property_residence_pool_terrace_1791361852594.jpg',
-      '/src/assets/images/property_open_living_dining_1791361806271.jpg',
+      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
     ],
     schoolsNearby: [
       { name: 'Alexandra Primary School', distanceKm: 0.5, within1km: true },
@@ -310,10 +310,10 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     topDate: 'Est. Completion 2029',
     developer: 'Housing & Development Board (HDB)',
     description: 'Transformative new eco-township celebrating heritage farmways and Lower Seletar Reservoir nature corridors. Standard BTO classification with generous Enhanced CPF Housing Grants.',
-    imageUrl: '/src/assets/images/property_bto_estate_1791357768080.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=1200&q=80',
     galleryUrls: [
-      '/src/assets/images/property_bto_estate_1791357768080.jpg',
-      '/src/assets/images/property_highrise_skyline_view_1791361836840.jpg',
+      'https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
     ],
     schoolsNearby: [
       { name: 'Peiying Primary School', distanceKm: 0.6, within1km: true },
@@ -358,11 +358,11 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     builtYear: 2023,
     developer: 'City Developments Limited (CDL)',
     description: 'Iconic freehold East Coast living with the spectacular Stratosphere rooftop deck 22 storeys above sea level, offering 600m jogging track and unobstructed sea panoramas.',
-    imageUrl: '/src/assets/images/property_eastcoast_balcony_1791361781222.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
     galleryUrls: [
-      '/src/assets/images/property_eastcoast_balcony_1791361781222.jpg',
-      '/src/assets/images/property_residence_pool_terrace_1791361852594.jpg',
-      '/src/assets/images/property_luxury_interior_1791357779406.jpg',
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
     ],
     schoolsNearby: [
       { name: 'Tanjong Katong Primary School', distanceKm: 0.4, within1km: true },
@@ -405,10 +405,10 @@ export const MOCK_PROPERTIES: PropertyListing[] = [
     remainingLeaseYears: 72,
     builtYear: 1999,
     description: 'Generously proportioned 5-room corner flat within prestigious Bishan estate. Renowned school belt proximity including Catholic High School and Raffles Institution.',
-    imageUrl: '/src/assets/images/property_open_living_dining_1791361806271.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
     galleryUrls: [
-      '/src/assets/images/property_open_living_dining_1791361806271.jpg',
-      '/src/assets/images/property_highrise_skyline_view_1791361836840.jpg',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80',
     ],
     schoolsNearby: [
       { name: 'Catholic High School (Primary)', distanceKm: 0.35, within1km: true },

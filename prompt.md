@@ -134,3 +134,10 @@ refresh the images on the property listing from https://www.propertyguru.com.sg/
 ```text
 create a prompt.md containing all my prompt located at project main
 ```
+
+---
+
+### Prompt 11: Stock Imagery Refresh via Unsplash
+```text
+please re-attach all property images with relatable images in https://unsplash.com/images/stock
+```
