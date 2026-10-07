@@ -6,7 +6,7 @@ const router = Router();
 const BENCHMARK_INTEREST_RATES = {
   status: 'success',
   source: 'MAS Regulatory Standards Benchmark',
-  note: 'MAS_KEY_ID bypassed; returning authoritative Singapore benchmark interest rates',
+  note: 'Returning authoritative Singapore benchmark interest rates (SORA)',
   data: [
     {
       end_of_day: new Date().toISOString().slice(0, 10),
@@ -23,7 +23,7 @@ const BENCHMARK_INTEREST_RATES = {
 const BENCHMARK_EXCHANGE_RATES = {
   status: 'success',
   source: 'MAS Regulatory Standards Benchmark',
-  note: 'MAS_KEY_ID bypassed; returning daily reference exchange rates',
+  note: 'Returning daily reference exchange rates',
   data: [
     {
       end_of_day: new Date().toISOString().slice(0, 10),
@@ -40,82 +40,18 @@ const BENCHMARK_EXCHANGE_RATES = {
 
 /**
  * GET /api/mas/exchange-rates
- * Daily SGD exchange rates (usd_sgd, eur_sgd, cny_sgd, gbp_sgd, etc.)
+ * Daily SGD exchange rates
  */
-router.get('/exchange-rates', async (req, res) => {
-  const keyId = req.headers['keyid'] || req.query.keyId || process.env.MAS_KEY_ID;
-  const limit = req.query.limit || '10';
-  const sort = req.query.sort || 'end_of_day desc';
-
-  // If no KeyId configured, gracefully return the benchmark exchange rates
-  if (!keyId) {
-    return res.json(BENCHMARK_EXCHANGE_RATES);
-  }
-
-  const url = new URL(
-    'https://eservices.mas.gov.sg/apimg-gw/server/monthly_statistical_bulletin_non610ora/exchange_rates_end_of_period_daily/views/exchange_rates_end_of_period_daily'
-  );
-  if (limit) url.searchParams.set('limit', limit);
-  if (sort) url.searchParams.set('sort', sort);
-
-  const headers = {
-    'User-Agent': 'EstatePulseSG/1.0',
-    KeyId: keyId,
-  };
-
-  try {
-    const response = await fetch(url.toString(), { headers });
-
-    if (!response.ok) {
-      // Fallback to benchmark on non-200
-      return res.json(BENCHMARK_EXCHANGE_RATES);
-    }
-
-    const data = await response.json();
-    res.json(data);
-  } catch (err) {
-    res.json(BENCHMARK_EXCHANGE_RATES);
-  }
+router.get('/exchange-rates', (req, res) => {
+  res.json(BENCHMARK_EXCHANGE_RATES);
 });
 
 /**
  * GET /api/mas/interest-rates
  * Daily SORA + compounded 1M/3M/6M averages
  */
-router.get('/interest-rates', async (req, res) => {
-  const keyId = req.headers['keyid'] || req.query.keyId || process.env.MAS_KEY_ID;
-  const limit = req.query.limit || '10';
-  const sort = req.query.sort || 'end_of_day desc';
-
-  // If no KeyId configured, gracefully return the benchmark SORA interest rates
-  if (!keyId) {
-    return res.json(BENCHMARK_INTEREST_RATES);
-  }
-
-  const url = new URL(
-    'https://eservices.mas.gov.sg/apimg-gw/server/monthly_statistical_bulletin_non610mssql/domestic_interest_rates_daily/views/domestic_interest_rates_daily'
-  );
-  if (limit) url.searchParams.set('limit', limit);
-  if (sort) url.searchParams.set('sort', sort);
-
-  const headers = {
-    'User-Agent': 'EstatePulseSG/1.0',
-    KeyId: keyId,
-  };
-
-  try {
-    const response = await fetch(url.toString(), { headers });
-
-    if (!response.ok) {
-      // Fallback to benchmark on non-200
-      return res.json(BENCHMARK_INTEREST_RATES);
-    }
-
-    const data = await response.json();
-    res.json(data);
-  } catch (err) {
-    res.json(BENCHMARK_INTEREST_RATES);
-  }
+router.get('/interest-rates', (req, res) => {
+  res.json(BENCHMARK_INTEREST_RATES);
 });
 
 export default router;

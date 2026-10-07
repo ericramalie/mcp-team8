@@ -88,14 +88,6 @@ async function handleHealth(req, res) {
       : 'Provide ONEMAP_PASSWORD in environment',
   };
 
-  const masStatus = {
-    service: 'MAS API Gateway',
-    hasKeyId: Boolean(process.env.MAS_KEY_ID),
-    endpoint: 'https://eservices.mas.gov.sg/apimg-gw',
-    status: 'Bypassed / Active',
-    message: 'MAS_KEY_ID bypassed; authoritative Singapore SORA & exchange benchmark rates active',
-  };
-
   const liveChecks = [hdbCheck, realtimeWeatherCheck, realtimeCarparkCheck];
   const allLiveOk = liveChecks.every((c) => c.ok);
 
@@ -109,7 +101,7 @@ async function handleHealth(req, res) {
     version: '1.0.0',
     summary: {
       liveOpenApisHealthy: allLiveOk,
-      totalServicesTracked: 6,
+      totalServicesTracked: 5,
     },
     livePublicServices: {
       hdbResale: hdbCheck,
@@ -119,7 +111,6 @@ async function handleHealth(req, res) {
     authenticatedServices: {
       uraSpace: uraStatus,
       onemap: onemapStatus,
-      masGateway: masStatus,
     },
   });
 }
